@@ -1,16 +1,21 @@
 from hex_converter import *
+from hex_converter_custom import *
 
 
 def print_vector(initial_hex_value):
     print(f'Initial hex value: {initial_hex_value}')
     number_of_bytes = int(len(initial_hex_value) / 2)
     print(f'Number of bytes: {number_of_bytes}')
-    big_endian = hex_to_big_endian(initial_hex_value)
-    little_endian = hex_to_little_endian(initial_hex_value)
+    # big_endian = hex_to_big_endian(initial_hex_value)
+    big_endian = hex_to_big_endian_custom(initial_hex_value)
+    # little_endian = hex_to_little_endian(initial_hex_value)
+    little_endian = hex_to_little_endian_custom(initial_hex_value)
     print(f'Big Endian: {big_endian}')
     print(f'Little Endian: {little_endian}')
-    print(f'Int from Big Endian: {big_endian_to_hex(big_endian)}')
-    print(f'Int from Little Endian: {little_endian_to_hex(little_endian)}\n')
+    # print(f'Int from Big Endian: {big_endian_to_hex(big_endian)}')
+    print(f'Int from Big Endian: {big_endian_to_hex_custom(big_endian)}')
+    # print(f'Int from Little Endian: {little_endian_to_hex(little_endian)}\n')
+    print(f'Int from Little Endian: {little_endian_to_hex_custom(little_endian)}\n')
 
 
 if __name__ == '__main__':
