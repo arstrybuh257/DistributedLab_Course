@@ -4,8 +4,8 @@ namespace DuckCoin.Wallet
 {
     public partial class MainForm : Form
     {
-        IAccountManager _accountManager;
-        IAccountService _accountservice;
+        private readonly IAccountManager _accountManager;
+        private readonly IAccountService _accountservice;
 
         public MainForm(IAccountManager accountManager, IAccountService accountservice)
         {
@@ -26,7 +26,7 @@ namespace DuckCoin.Wallet
             await _accountservice.AddAccountAsync(account);
             MessageBox.Show($"This is your address hash. Use it for signing in the wallet.\n {account.PublicKeyHash}");
 
-            ProceedToAnAccountForm();
+            ProceedToAnAccountForm(account.PublicKeyHash);
         }
 
         private async void button_login_Click(object sender, EventArgs e)
@@ -38,7 +38,10 @@ namespace DuckCoin.Wallet
                 return;
             }
 
-            var validationResult = await _accountservice.ValidatePasswordAsync(textBox_login_address.Text, textBox_login_password.Text);
+            var accountId = textBox_login_address.Text;
+            var password = textBox_login_password.Text;
+
+            var validationResult = await _accountservice.ValidatePasswordAsync(accountId, password);
 
             if(validationResult == false)
             {
@@ -46,14 +49,13 @@ namespace DuckCoin.Wallet
                 return;
             }
 
-            ProceedToAnAccountForm();
+            ProceedToAnAccountForm(accountId);
         }
 
-        private void ProceedToAnAccountForm()
+        private void ProceedToAnAccountForm(string accountId)
         {
-            AccountForm accountForm = new AccountForm();
+            AccountForm accountForm = new AccountForm(_accountManager, _accountservice, accountId);
             accountForm.Show();
-            Hide();
         }
     }
 }
