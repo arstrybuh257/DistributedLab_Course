@@ -92,6 +92,7 @@
             this.button_login.TabIndex = 4;
             this.button_login.Text = "Login";
             this.button_login.UseVisualStyleBackColor = true;
+            this.button_login.Click += new System.EventHandler(this.button_login_Click);
             // 
             // textBox_login_password
             // 
@@ -104,9 +105,9 @@
             // textBox_login_address
             // 
             this.textBox_login_address.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_login_address.Location = new System.Drawing.Point(54, 91);
+            this.textBox_login_address.Location = new System.Drawing.Point(202, 90);
             this.textBox_login_address.Name = "textBox_login_address";
-            this.textBox_login_address.Size = new System.Drawing.Size(876, 33);
+            this.textBox_login_address.Size = new System.Drawing.Size(570, 33);
             this.textBox_login_address.TabIndex = 2;
             // 
             // label_provide_password

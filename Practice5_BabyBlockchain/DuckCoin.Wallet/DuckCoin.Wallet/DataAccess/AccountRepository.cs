@@ -1,5 +1,6 @@
 ﻿using DuckCoin.DataAccess.Interfaces;
 using DuckCoin.Wallet.DomainModels;
+using System.Linq.Expressions;
 
 namespace DuckCoin.Wallet.DataAccess
 {
@@ -15,6 +16,11 @@ namespace DuckCoin.Wallet.DataAccess
         public async Task AddAccount(Account account)
         {
             await _internalRepository.AddAsync(account).ConfigureAwait(false);
+        }
+
+        public async Task<Account> GetAccountByPredicateAsync(Expression<Func<Account, bool>> predicate)
+        {
+            return await _internalRepository.GetAsync(predicate).ConfigureAwait(false);
         }
     }
 }
