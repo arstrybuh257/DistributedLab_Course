@@ -1,22 +1,23 @@
-using DuckCoin.Cryptography;
+using DuckCoin.Wallet.DataAccess;
 
 namespace DuckCoin.Wallet
 {
     public partial class MainForm : Form
     {
-        IEncryptor _encryptor;
+        IAccountManager _accountManager;
+        IAccountRepository _accountRepository;
 
-        public MainForm(IEncryptor encryptor)
+        public MainForm(IAccountManager accountManager, IAccountRepository accountRepository)
         {
-            _encryptor = encryptor;
+            _accountManager = accountManager;
+            _accountRepository = accountRepository;
             InitializeComponent();
         }
 
         private void button_newAdress_Click(object sender, EventArgs e)
         {
-            var keyPair = _encryptor.GenerateKeys();
-
-            //richTextBox1.Text = $"Public key: {keyPair.PublicKey}\nPrivate key: {keyPair.PrivateKey}";
+            var account = _accountManager.CreateAccount(textBox_password.Text);
+            _accountRepository.AddAccount(account);
         }
     }
 }

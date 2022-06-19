@@ -7,12 +7,14 @@ namespace DuckCoin.DataAccess.Mongo
 {
     public static class MongoAutofacExtensions
     {
-        public static void AddMongo(this ContainerBuilder builder)
+        public static void AddMongo(this ContainerBuilder builder, IConfiguration configuration)
         {
+
+            var options = new MongoDbOptions();
+
             builder.Register(context =>
             {
                 var options = new MongoDbOptions();
-                var configuration = context.Resolve<IConfiguration>();
                 configuration.GetSection("mongo").Bind(options);
                 return options;
             }).SingleInstance();
