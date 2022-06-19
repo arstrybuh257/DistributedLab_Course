@@ -2,6 +2,9 @@
 *.ipr
 *.iws
 .idea/
+.vs/
+bin/
+obj/
 /build/
 /dist/
 /out/
