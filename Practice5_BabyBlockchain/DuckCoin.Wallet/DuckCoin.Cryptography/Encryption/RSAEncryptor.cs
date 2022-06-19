@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace DuckCoin.Cryptography
+namespace DuckCoin.Cryptography.Encryption
 {
     public class RSAEncryptor : IEncryptor
     {

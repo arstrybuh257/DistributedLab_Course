@@ -1,3 +1,5 @@
+using DuckCoin.Wallet.Services;
+
 namespace DuckCoin.Wallet
 {
     public partial class MainForm : Form

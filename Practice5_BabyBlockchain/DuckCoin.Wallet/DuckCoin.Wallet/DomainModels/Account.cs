@@ -1,4 +1,4 @@
-﻿using DuckCoin.Cryptography;
+﻿using DuckCoin.Cryptography.Encryption;
 using DuckCoin.DataAccess.Interfaces;
 
 namespace DuckCoin.Wallet.DomainModels

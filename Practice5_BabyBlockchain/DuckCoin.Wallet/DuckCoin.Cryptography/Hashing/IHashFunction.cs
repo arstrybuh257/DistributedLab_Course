@@ -1,4 +1,4 @@
-﻿namespace DuckCoin.Cryptography
+﻿namespace DuckCoin.Cryptography.Hashing
 {
     public interface IHashFunction
     {

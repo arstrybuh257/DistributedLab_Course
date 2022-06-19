@@ -1,4 +1,4 @@
-﻿namespace DuckCoin.Cryptography
+﻿namespace DuckCoin.Cryptography.Encryption
 {
     public record KeyPair(string PublicKey, string PrivateKey);
 

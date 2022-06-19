@@ -1,9 +1,11 @@
 using Autofac;
 using Microsoft.Extensions.Configuration;
 using DuckCoin.DataAccess.Mongo;
-using DuckCoin.Cryptography;
 using System.Reflection;
 using DuckCoin.Wallet.DomainModels;
+using DuckCoin.Wallet.Services;
+using DuckCoin.Cryptography.Encryption;
+using DuckCoin.Cryptography.Hashing;
 
 namespace DuckCoin.Wallet
 {

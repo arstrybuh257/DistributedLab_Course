@@ -1,8 +1,8 @@
-﻿using DuckCoin.Cryptography;
+﻿using DuckCoin.Cryptography.Hashing;
 using DuckCoin.Wallet.DataAccess;
 using DuckCoin.Wallet.DomainModels;
 
-namespace DuckCoin.Wallet
+namespace DuckCoin.Wallet.Services
 {
     public class AccountServices : IAccountService
     {

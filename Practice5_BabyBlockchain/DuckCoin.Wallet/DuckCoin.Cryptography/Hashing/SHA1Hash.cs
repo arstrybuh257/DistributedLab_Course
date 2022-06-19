@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace DuckCoin.Cryptography
+namespace DuckCoin.Cryptography.Hashing
 {
     public class SHA1Hash : IHashFunction
     {
