@@ -1,6 +1,7 @@
 using Autofac;
 using Microsoft.Extensions.Configuration;
 using DuckCoin.DataAccess.Mongo;
+using DuckCoin.Cryptography;
 
 namespace DuckCoin.Wallet
 {
@@ -20,13 +21,14 @@ namespace DuckCoin.Wallet
             Configuration = builder.Build();
 
             Container = Configure();
-            Application.Run(new MainForm());
+            Application.Run(new MainForm(Container.Resolve<IEncryptor>()));
         }
 
         static IContainer Configure()
         {
             var builder = new ContainerBuilder();
             builder.AddMongo();
+            builder.RegisterType<RSAEncryptor>().As<IEncryptor>();
             builder.RegisterType<MainForm>();
             return builder.Build();
         }
