@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace DuckCoin.Cryptography.Encryption
 {
@@ -12,6 +13,71 @@ namespace DuckCoin.Cryptography.Encryption
             var publicKey = Convert.ToBase64String(GetArray(publicParameters));
             var privateKey = Convert.ToBase64String(GetArray(privateParameters));
             return new KeyPair(publicKey, privateKey);
+        }
+
+        public string Sign(string data, string privateKey)
+        {
+            using var provider = GetCryptoProvider(privateKey);
+            var bytes = Encoding.UTF8.GetBytes(data);
+            var signedHash = provider.SignData(bytes, SHA256.Create());
+            return Convert.ToBase64String(signedHash);
+        }
+
+        public bool VerifySign(string publicKey, string data, string sign)
+        {
+            using var provider = GetVerificationProvider(publicKey);
+            var signBytes = Convert.FromBase64String(sign);
+            var dataBytes = Encoding.UTF8.GetBytes(data);
+            return provider.VerifyData(dataBytes, SHA256.Create(), signBytes);
+        }
+
+        private RSACryptoServiceProvider GetCryptoProvider(string privateKey)
+        {
+            var privateParameter = GetPrivateKey(Convert.FromBase64String(privateKey));
+            var provider = new RSACryptoServiceProvider();
+            provider.ImportParameters(privateParameter);
+
+            return provider;
+        }
+
+        private RSACryptoServiceProvider GetVerificationProvider(string publicKey)
+        {
+            var parameter = GetPublicKey(Convert.FromBase64String(publicKey));
+            var provider = new RSACryptoServiceProvider();
+            provider.ImportParameters(parameter);
+            return provider;
+        }
+
+        private byte[] FillArray(int length, byte[] byteRepresentation, ref int pos)
+        {
+            var result = new byte[length];
+            Array.Copy(byteRepresentation, pos, result, 0, length);
+            pos += length;
+            return result;
+        }
+
+        private RSAParameters GetPublicKey(byte[] byteRepresentation)
+        {
+            int pos = 0;
+            var result = new RSAParameters();
+            result.Exponent = FillArray(3, byteRepresentation, ref pos);
+            result.Modulus = FillArray(128, byteRepresentation, ref pos);
+            return result;
+        }
+
+        private RSAParameters GetPrivateKey(byte[] byteRepresentation)
+        {
+            int pos = 0;
+            var result = new RSAParameters();
+            result.D = FillArray(128, byteRepresentation, ref pos);
+            result.DP = FillArray(64, byteRepresentation, ref pos);
+            result.DQ = FillArray(64, byteRepresentation, ref pos);
+            result.Exponent = FillArray(3, byteRepresentation, ref pos);
+            result.InverseQ = FillArray(64, byteRepresentation, ref pos);
+            result.Modulus = FillArray(128, byteRepresentation, ref pos);
+            result.P = FillArray(64, byteRepresentation, ref pos);
+            result.Q = FillArray(64, byteRepresentation, ref pos);
+            return result;
         }
 
         private byte[] GetArray(RSAParameters p)
