@@ -170,6 +170,7 @@
             this.Controls.Add(this.label_accountId_title);
             this.Name = "AccountForm";
             this.Text = "AccountForm";
+            this.Load += new System.EventHandler(this.account_form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

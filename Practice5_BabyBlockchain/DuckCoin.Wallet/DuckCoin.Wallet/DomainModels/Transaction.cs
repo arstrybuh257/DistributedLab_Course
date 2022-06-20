@@ -4,11 +4,11 @@ namespace DuckCoin.Wallet.DomainModels
 {
     public class Transaction : IIdentifiable
     {
-        public Guid Id { get;set; }
+        public Guid Id { get;  }
 
-        public string? TransactionId { get;set; }
+        public string? TransactionId { get; private set; }
 
-        public List<SignedOperation> SignedOperations { get; set; }
+        public List<SignedOperation> SignedOperations { get; }
 
         public long Nonce { get; set; }
 

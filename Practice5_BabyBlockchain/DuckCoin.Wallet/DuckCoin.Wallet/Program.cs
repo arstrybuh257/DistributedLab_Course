@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using DuckCoin.DataAccess.Mongo;
 using System.Reflection;
 using DuckCoin.Wallet.DomainModels;
-using DuckCoin.Wallet.Services;
 using DuckCoin.Cryptography.Encryption;
 using DuckCoin.Cryptography.Hashing;
 
@@ -25,7 +24,7 @@ namespace DuckCoin.Wallet
             Configuration = builder.Build();
 
             Container = Configure();
-            Application.Run(new MainForm(Container.Resolve<IAccountManager>(), Container.Resolve<IAccountService>()));
+            Application.Run(new MainForm());
         }
 
         static IContainer Configure()

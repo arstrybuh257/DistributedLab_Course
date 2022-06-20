@@ -3,7 +3,7 @@
     public class Operation
     {
 
-        public Operation(string senderAddress, string receiverAddress, string amount)
+        public Operation(string senderAddress, string receiverAddress, double amount)
         {
             SenderAddress = senderAddress;
             ReceiverAddress = receiverAddress;
@@ -14,6 +14,6 @@
 
         public string ReceiverAddress { get; set; }
 
-        public string Amount { get; set; }
+        public double Amount { get; set; }
     }
 }

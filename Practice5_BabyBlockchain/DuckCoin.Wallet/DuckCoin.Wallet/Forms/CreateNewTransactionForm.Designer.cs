@@ -261,6 +261,7 @@
             this.button_confirmTransaction.TabIndex = 22;
             this.button_confirmTransaction.Text = "Confirm transaction";
             this.button_confirmTransaction.UseVisualStyleBackColor = true;
+            this.button_confirmTransaction.Click += new System.EventHandler(this.button_confirmTransaction_Click);
             // 
             // CreateNewTransactionForm
             // 

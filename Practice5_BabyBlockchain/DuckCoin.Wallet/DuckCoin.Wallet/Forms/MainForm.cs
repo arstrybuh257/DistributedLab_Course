@@ -1,3 +1,4 @@
+using Autofac;
 using DuckCoin.Wallet.Services;
 
 namespace DuckCoin.Wallet
@@ -7,10 +8,10 @@ namespace DuckCoin.Wallet
         private readonly IAccountManager _accountManager;
         private readonly IAccountService _accountservice;
 
-        public MainForm(IAccountManager accountManager, IAccountService accountservice)
+        public MainForm()
         {
-            _accountManager = accountManager;
-            _accountservice = accountservice;
+            _accountManager = Program.Container.Resolve<IAccountManager>();
+            _accountservice = Program.Container.Resolve<IAccountService>();
             InitializeComponent();
         }
 
@@ -54,7 +55,7 @@ namespace DuckCoin.Wallet
 
         private void ProceedToAnAccountForm(string accountId)
         {
-            AccountForm accountForm = new AccountForm(_accountManager, _accountservice, accountId);
+            AccountForm accountForm = new AccountForm(accountId);
             accountForm.Show();
         }
     }

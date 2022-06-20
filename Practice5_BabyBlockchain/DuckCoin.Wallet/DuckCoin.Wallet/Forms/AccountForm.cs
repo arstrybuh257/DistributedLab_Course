@@ -1,4 +1,6 @@
-﻿using DuckCoin.Wallet.Forms;
+﻿using Autofac;
+using DuckCoin.Cryptography.Encryption;
+using DuckCoin.Wallet.Forms;
 using DuckCoin.Wallet.Services;
 
 namespace DuckCoin.Wallet
@@ -8,11 +10,12 @@ namespace DuckCoin.Wallet
         private readonly IAccountManager _accountManager;
         private readonly IAccountService _accountservice;
         private readonly string _accountId;
+        private KeyPair _keyPair;
 
-        public AccountForm(IAccountManager accountManager, IAccountService accountservice, string accountId)
+        public AccountForm(string accountId)
         {
-            _accountManager = accountManager;
-            _accountservice = accountservice;
+            _accountManager = Program.Container.Resolve<IAccountManager>();
+            _accountservice = Program.Container.Resolve<IAccountService>();
             _accountId = accountId;
             InitializeComponent();
         }
@@ -30,7 +33,7 @@ namespace DuckCoin.Wallet
 
             label_accountId.Text = account.PublicKeyHash;
             label_balance.Text = account.Balance.ToString();
-
+            _keyPair = new KeyPair(account.PublicKey, account.PrivateKey);
         }
 
         private void ProceedToTheMainForm()
@@ -50,7 +53,7 @@ namespace DuckCoin.Wallet
 
         private void ProceedToTheCreateNewTrasactionForm()
         {
-            var form = new CreateNewTransactionForm();
+            var form = new CreateNewTransactionForm(_keyPair);
             form.ShowDialog();
         }
     }
