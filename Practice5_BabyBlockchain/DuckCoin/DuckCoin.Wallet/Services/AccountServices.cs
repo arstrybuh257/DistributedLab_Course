@@ -17,12 +17,17 @@ namespace DuckCoin.Wallet.Services
 
         public async Task AddAccountAsync(Account account)
         {
-            await _accountRepository.AddAccount(account).ConfigureAwait(false);
+            await _accountRepository.AddAccountAsync(account).ConfigureAwait(false);
         }
 
         public async Task<Account> GetAccountAsync(string accountId)
         {
             return await _accountRepository.GetAccountByPredicateAsync(x => accountId.Equals(x.PublicKeyHash)).ConfigureAwait(false);
+        }
+
+        public async Task UpdateAccountAsync(Account account)
+        {
+            await _accountRepository.UpdateAccountAsync(account).ConfigureAwait(false);
         }
 
         public async Task<bool> ValidatePasswordAsync(string addressHash, string password)

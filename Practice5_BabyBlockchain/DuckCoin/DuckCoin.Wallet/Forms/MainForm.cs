@@ -27,7 +27,7 @@ namespace DuckCoin.Wallet
             await _accountservice.AddAccountAsync(account);
             MessageBox.Show($"This is your address hash. Use it for signing in the wallet.\n {account.PublicKeyHash}");
 
-            ProceedToAnAccountForm(account.PublicKeyHash);
+            await ProceedToAnAccountFormAsync(account.PublicKeyHash);
         }
 
         private async void button_login_Click(object sender, EventArgs e)
@@ -50,13 +50,22 @@ namespace DuckCoin.Wallet
                 return;
             }
 
-            ProceedToAnAccountForm(accountId);
+            await ProceedToAnAccountFormAsync(accountId);
         }
 
-        private void ProceedToAnAccountForm(string accountId)
+        private async Task ProceedToAnAccountFormAsync(string accountId)
         {
-            AccountForm accountForm = new AccountForm(accountId);
+            var account = await _accountservice.GetAccountAsync(accountId);
+
+            if (account == null)
+            {
+                MessageBox.Show("This account was not found.");
+                return;
+            }
+
+            AccountForm accountForm = new AccountForm(account);
             accountForm.Show();
+            Hide();
         }
     }
 }

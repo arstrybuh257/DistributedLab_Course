@@ -18,7 +18,7 @@ namespace DuckCoin.Wallet.DomainModels
 
         public string PrivateKey { get; set; }
 
-        public int Balance { get; set; }
+        public double Balance { get; set; }
 
         public string PasswordHash { get; set; }
 

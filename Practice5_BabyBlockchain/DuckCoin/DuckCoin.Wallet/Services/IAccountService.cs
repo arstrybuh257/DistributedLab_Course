@@ -6,6 +6,7 @@ namespace DuckCoin.Wallet.Services
     {
         Task<Account> GetAccountAsync(string accountId);
         Task AddAccountAsync(Account account);
+        Task UpdateAccountAsync(Account account);
         Task<bool> ValidatePasswordAsync(string addressHash, string password);
     }
 }

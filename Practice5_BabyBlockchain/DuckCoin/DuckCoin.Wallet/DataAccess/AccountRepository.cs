@@ -13,7 +13,7 @@ namespace DuckCoin.Wallet.DataAccess
             _internalRepository = internalRepository;
         }
 
-        public async Task AddAccount(Account account)
+        public async Task AddAccountAsync(Account account)
         {
             await _internalRepository.AddAsync(account).ConfigureAwait(false);
         }
@@ -21,6 +21,11 @@ namespace DuckCoin.Wallet.DataAccess
         public async Task<Account> GetAccountByPredicateAsync(Expression<Func<Account, bool>> predicate)
         {
             return await _internalRepository.GetAsync(predicate).ConfigureAwait(false);
+        }
+
+        public async Task UpdateAccountAsync(Account account)
+        {
+            await _internalRepository.UpdateAsync(account).ConfigureAwait(false);
         }
     }
 }

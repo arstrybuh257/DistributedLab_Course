@@ -24,7 +24,7 @@ namespace DuckCoin.Wallet
             Configuration = builder.Build();
 
             Container = Configure();
-            Application.Run(new MainForm());
+            Application.Run(Container.Resolve<MainForm>());
         }
 
         static IContainer Configure()
@@ -36,7 +36,8 @@ namespace DuckCoin.Wallet
             builder.RegisterType<SHA1Hash>().As<IHashFunction>();
             builder.AddMongo(Configuration);
             builder.AddMongoRepository<Account>("Accounts");
-            builder.RegisterType<MainForm>();
+            builder.AddMongoRepository<Transaction>("Transactions");
+            builder.RegisterType<MainForm>().SingleInstance();
             return builder.Build();
         }
     }

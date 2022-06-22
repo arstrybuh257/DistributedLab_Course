@@ -1,21 +1,25 @@
 ﻿using Autofac;
-using DuckCoin.Cryptography.Encryption;
 using DuckCoin.Wallet.Core;
 using DuckCoin.Wallet.DomainModels;
+using DuckCoin.Wallet.Services;
 
 namespace DuckCoin.Wallet.Forms
 {
     public partial class CreateNewTransactionForm : Form
     {
         private readonly ITransactionManager _transactionManager;
+        private readonly IAccountService _accountServcie;
+        private readonly ITransactionService _transactionService;
         private byte _operationCount;
-        private readonly KeyPair _keyPair;
+        private readonly Account _account;
 
-        public CreateNewTransactionForm(KeyPair keyPair)
+        public CreateNewTransactionForm(Account account)
         {
-            _keyPair = keyPair;
             _transactionManager = Program.Container.Resolve<ITransactionManager>();
+            _transactionService = Program.Container.Resolve<ITransactionService>();
+            _accountServcie = Program.Container.Resolve<IAccountService>();
             _operationCount = 1;
+            _account = account;
             InitializeComponent();
         }
 
@@ -72,7 +76,7 @@ namespace DuckCoin.Wallet.Forms
         }
 
         //TODO Reformat this method to read operations in more elegant way
-        private void button_confirmTransaction_Click(object sender, EventArgs e)
+        private async void button_confirmTransaction_Click(object sender, EventArgs e)
         {
             List<Operation> operations = new List<Operation>();
 
@@ -109,7 +113,22 @@ namespace DuckCoin.Wallet.Forms
                 operations.Add(operation3);
             }
 
-            var transaction = _transactionManager.CreateTransaction(operations, _keyPair.PrivateKey);
+            var transaction = _transactionManager.CreateTransaction(operations, _account.PrivateKey);
+            var validationResult = _transactionManager.ValidateTransaction(transaction, _account.Balance);
+            
+            if (!validationResult.IsValid)
+            {
+                MessageBox.Show(validationResult.Error);
+                return;
+            }
+
+            await _transactionService.AddTransactionAsync(transaction);
+            
+            _account.Balance -= transaction.GetTotalAmount();
+            await _accountServcie.UpdateAccountAsync(_account);
+
+            MessageBox.Show("Transaction was successfully sent to the blockchain.");
+            Close();
         }
 
         private Operation? ReadOperation(TextBox receiverTb, TextBox amountTb)
@@ -135,7 +154,7 @@ namespace DuckCoin.Wallet.Forms
                 return null;
             }
 
-            return new Operation(_keyPair.PublicKey, receiverAddress, amount);
+            return new Operation(_account.PublicKeyHash, receiverAddress, amount, _account.PublicKey);
         }
     }
 }

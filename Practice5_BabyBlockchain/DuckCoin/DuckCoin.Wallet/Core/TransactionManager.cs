@@ -33,6 +33,33 @@ namespace DuckCoin.Wallet.Core
             return transaction;
         }
 
+        public TransactionValidationResult ValidateTransaction(Transaction transaction, double currentBalance)
+        {
+            double totalAmount = 0;
+
+            if (transaction == null)
+            {
+                throw new ArgumentNullException(nameof(transaction));
+            }
+
+            transaction.SignedOperations.ForEach(o => totalAmount += o.Data.Amount);
+
+            if (totalAmount > currentBalance)
+            {
+                return new TransactionValidationResult()
+                {
+                    IsValid = false,
+                    Error = "You can't spent more money than you have."
+                };
+            }
+
+            return new TransactionValidationResult()
+            {
+                IsValid = true,
+                Error = null
+            };
+        }
+
         private SignedOperation SignOperation(Operation operation, string privateKey)
         {
             var operationString = JsonSerializer.Serialize(operation);

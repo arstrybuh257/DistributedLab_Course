@@ -5,7 +5,8 @@ namespace DuckCoin.Wallet.DataAccess
 {
     public interface IAccountRepository
     {
-        Task AddAccount(Account account);
+        Task AddAccountAsync(Account account);
+        Task UpdateAccountAsync(Account account);
         Task<Account> GetAccountByPredicateAsync(Expression<Func<Account, bool>> predicate);
     }
 }
