@@ -7,7 +7,7 @@ namespace DuckCoin.Cryptography.Encryption
     {
         public KeyPair GenerateKeys()
         {
-            using var rsa = new RSACryptoServiceProvider(512);
+            using var rsa = new RSACryptoServiceProvider();
             var privateParameters = rsa.ExportParameters(true);
             var publicParameters = rsa.ExportParameters(false);
             var publicKey = Convert.ToBase64String(GetArray(publicParameters));
