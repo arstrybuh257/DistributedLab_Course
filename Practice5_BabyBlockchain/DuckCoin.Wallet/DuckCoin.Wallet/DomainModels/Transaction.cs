@@ -1,11 +1,9 @@
-﻿using DuckCoin.DataAccess.Interfaces;
+﻿using DuckCoin.DataAccess.Abstractions;
 
 namespace DuckCoin.Wallet.DomainModels
 {
-    public class Transaction : IIdentifiable
+    public class Transaction : BaseEntity
     {
-        public Guid Id { get;  }
-
         public string? TransactionId { get; private set; }
 
         public List<SignedOperation> SignedOperations { get; }

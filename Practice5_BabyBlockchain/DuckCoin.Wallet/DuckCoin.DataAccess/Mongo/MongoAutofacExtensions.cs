@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using DuckCoin.DataAccess.Interfaces;
+using DuckCoin.DataAccess.Abstractions;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 

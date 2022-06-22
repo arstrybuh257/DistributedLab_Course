@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace DuckCoin.DataAccess.Interfaces
+namespace DuckCoin.DataAccess.Abstractions
 {
     public interface IRepository<TEntity> where TEntity : IIdentifiable
     {

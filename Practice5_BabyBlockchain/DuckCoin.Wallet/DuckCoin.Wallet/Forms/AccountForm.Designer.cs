@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label_accountId_title = new System.Windows.Forms.Label();
-            this.label_accountId = new System.Windows.Forms.Label();
             this.button_logout = new System.Windows.Forms.Button();
             this.label_balance_title = new System.Windows.Forms.Label();
             this.label_balance = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.label_logo = new System.Windows.Forms.Label();
             this.label_transactionHistory = new System.Windows.Forms.Label();
             this.richTextBox_transactionsHistory = new System.Windows.Forms.RichTextBox();
+            this.textBox_accountAddress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_accountId_title
@@ -50,16 +50,6 @@
             this.label_accountId_title.Size = new System.Drawing.Size(130, 37);
             this.label_accountId_title.TabIndex = 0;
             this.label_accountId_title.Text = "AcountId:";
-            // 
-            // label_accountId
-            // 
-            this.label_accountId.AutoSize = true;
-            this.label_accountId.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_accountId.Location = new System.Drawing.Point(159, 113);
-            this.label_accountId.Name = "label_accountId";
-            this.label_accountId.Size = new System.Drawing.Size(90, 37);
-            this.label_accountId.TabIndex = 1;
-            this.label_accountId.Text = "label1";
             // 
             // button_logout
             // 
@@ -152,11 +142,21 @@
             this.richTextBox_transactionsHistory.TabIndex = 11;
             this.richTextBox_transactionsHistory.Text = "";
             // 
+            // textBox_accountAddress
+            // 
+            this.textBox_accountAddress.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_accountAddress.Location = new System.Drawing.Point(159, 117);
+            this.textBox_accountAddress.Name = "textBox_accountAddress";
+            this.textBox_accountAddress.ReadOnly = true;
+            this.textBox_accountAddress.Size = new System.Drawing.Size(403, 33);
+            this.textBox_accountAddress.TabIndex = 12;
+            // 
             // AccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.textBox_accountAddress);
             this.Controls.Add(this.richTextBox_transactionsHistory);
             this.Controls.Add(this.label_transactionHistory);
             this.Controls.Add(this.label_logo);
@@ -166,7 +166,6 @@
             this.Controls.Add(this.label_balance);
             this.Controls.Add(this.label_balance_title);
             this.Controls.Add(this.button_logout);
-            this.Controls.Add(this.label_accountId);
             this.Controls.Add(this.label_accountId_title);
             this.Name = "AccountForm";
             this.Text = "AccountForm";
@@ -179,7 +178,6 @@
         #endregion
 
         private Label label_accountId_title;
-        private Label label_accountId;
         private Button button_logout;
         private Label label_balance_title;
         private Label label_balance;
@@ -189,5 +187,6 @@
         private Label label_logo;
         private Label label_transactionHistory;
         private RichTextBox richTextBox_transactionsHistory;
+        private TextBox textBox_accountAddress;
     }
 }

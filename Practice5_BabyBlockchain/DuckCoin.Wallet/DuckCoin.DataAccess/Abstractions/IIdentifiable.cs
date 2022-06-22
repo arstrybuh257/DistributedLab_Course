@@ -1,4 +1,4 @@
-﻿namespace DuckCoin.DataAccess.Interfaces
+﻿namespace DuckCoin.DataAccess.Abstractions
 {
     public interface IIdentifiable
     {

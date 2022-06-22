@@ -31,7 +31,7 @@ namespace DuckCoin.Wallet
                 return;
             }
 
-            label_accountId.Text = account.PublicKeyHash;
+            textBox_accountAddress.Text = account.PublicKeyHash;
             label_balance.Text = account.Balance.ToString();
             _keyPair = new KeyPair(account.PublicKey, account.PrivateKey);
         }

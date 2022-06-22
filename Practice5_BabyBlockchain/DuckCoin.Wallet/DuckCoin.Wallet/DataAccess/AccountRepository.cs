@@ -1,4 +1,4 @@
-﻿using DuckCoin.DataAccess.Interfaces;
+﻿using DuckCoin.DataAccess.Abstractions;
 using DuckCoin.Wallet.DomainModels;
 using System.Linq.Expressions;
 

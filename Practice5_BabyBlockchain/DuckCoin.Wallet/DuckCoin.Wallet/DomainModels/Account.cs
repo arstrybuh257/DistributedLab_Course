@@ -1,12 +1,10 @@
 ﻿using DuckCoin.Cryptography.Encryption;
-using DuckCoin.DataAccess.Interfaces;
+using DuckCoin.DataAccess.Abstractions;
 
 namespace DuckCoin.Wallet.DomainModels
 {
-    public class Account : IIdentifiable
+    public class Account : BaseEntity
     {
-        public Guid Id { get; set; }
-
         public Account(KeyPair keyPair, string passwordHash, string publicKeyHash)
         {
             PublicKey = keyPair.PublicKey;
