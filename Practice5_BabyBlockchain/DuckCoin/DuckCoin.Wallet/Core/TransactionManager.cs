@@ -22,8 +22,8 @@ namespace DuckCoin.Wallet.Core
 
             foreach (var operation in operations)
             {
-                var signedOperation = SignOperation(operation, privateKey);
-                transaction.AddOperation(signedOperation);
+                operation.SignOperation(_encryptor, privateKey);
+                transaction.AddOperation(operation);
             }
 
             var transactionString = JsonSerializer.Serialize(transaction);
@@ -42,7 +42,7 @@ namespace DuckCoin.Wallet.Core
                 throw new ArgumentNullException(nameof(transaction));
             }
 
-            transaction.SignedOperations.ForEach(o => totalAmount += o.Data.Amount);
+            transaction.Operations.ForEach(o => totalAmount += o.Amount);
 
             if (totalAmount > currentBalance)
             {
@@ -58,13 +58,6 @@ namespace DuckCoin.Wallet.Core
                 IsValid = true,
                 Error = null
             };
-        }
-
-        private SignedOperation SignOperation(Operation operation, string privateKey)
-        {
-            var operationString = JsonSerializer.Serialize(operation);
-            var signature = _encryptor.Sign(operationString, privateKey);
-            return new SignedOperation(operation, signature);
         }
     }
 }

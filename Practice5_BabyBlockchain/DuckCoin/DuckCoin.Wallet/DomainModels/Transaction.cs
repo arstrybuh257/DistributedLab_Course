@@ -6,7 +6,7 @@ namespace DuckCoin.Wallet.DomainModels
     {
         public string? TransactionId { get; private set; }
 
-        public List<SignedOperation> SignedOperations { get; private set; }
+        public List<Operation> Operations { get; private set; }
 
         public long Nonce { get; set; }
 
@@ -15,14 +15,14 @@ namespace DuckCoin.Wallet.DomainModels
 
         public Transaction()
         {
-            SignedOperations = new List<SignedOperation>();
+            Operations = new List<Operation>();
             IsBlockhainTransaction = false;
             Nonce = DateTime.Now.Ticks;
         }
 
-        public void AddOperation(SignedOperation operation)
+        public void AddOperation(Operation operation)
         {
-            SignedOperations.Add(operation);
+            Operations.Add(operation);
         }
 
         public void SetTransactionId(string transactionHash)
@@ -33,7 +33,7 @@ namespace DuckCoin.Wallet.DomainModels
         public double GetTotalAmount()
         {
             double totalAmount = 0;
-            SignedOperations.ForEach(o => totalAmount += o.Data.Amount);
+            Operations.ForEach(o => totalAmount += o.Amount);
             return totalAmount;
         }
     }

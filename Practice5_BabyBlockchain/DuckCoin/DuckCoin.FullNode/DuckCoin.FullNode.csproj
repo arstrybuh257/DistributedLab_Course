@@ -13,7 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DuckCoin.Cryptography\DuckCoin.Cryptography.csproj" />
     <ProjectReference Include="..\DuckCoin.DataAccess\DuckCoin.DataAccess.csproj" />
-    <ProjectReference Include="..\DuckCoin.SharedModels\DuckCoin.SharedModels.csproj" />
   </ItemGroup>
 
 </Project>
