@@ -1,4 +1,5 @@
 using Autofac;
+using DuckCoin.Wallet.Core.Abstractions;
 using DuckCoin.Wallet.Services;
 
 namespace DuckCoin.Wallet

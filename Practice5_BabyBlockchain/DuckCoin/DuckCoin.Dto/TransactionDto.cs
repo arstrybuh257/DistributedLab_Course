@@ -2,9 +2,9 @@
 {
     public class TransactionDto
     {
-        public string? TransactionId { get; private set; }
+        public string? TransactionId { get; set; }
 
-        public List<OperationDto> Operations { get; private set; }
+        public List<OperationDto> Operations { get; set; }
 
         public long Nonce { get; set; }
 

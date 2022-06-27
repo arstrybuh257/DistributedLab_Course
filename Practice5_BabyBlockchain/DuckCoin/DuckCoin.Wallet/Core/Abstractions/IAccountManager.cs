@@ -1,6 +1,6 @@
 ﻿using DuckCoin.Wallet.DomainModels;
 
-namespace DuckCoin.Wallet
+namespace DuckCoin.Wallet.Core.Abstractions
 {
     public interface IAccountManager
     {

@@ -1,5 +1,6 @@
 ﻿using DuckCoin.Cryptography.Encryption;
 using DuckCoin.Cryptography.Hashing;
+using DuckCoin.Wallet.Core.Abstractions;
 using DuckCoin.Wallet.DomainModels;
 using System.Text.Json;
 

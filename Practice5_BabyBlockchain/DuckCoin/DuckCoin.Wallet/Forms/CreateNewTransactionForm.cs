@@ -1,6 +1,9 @@
 ﻿using Autofac;
-using DuckCoin.Wallet.Core;
+using DuckCoin.Dto;
+using DuckCoin.Wallet.Core.Abstractions;
 using DuckCoin.Wallet.DomainModels;
+using DuckCoin.Wallet.Helpers;
+using DuckCoin.Wallet.HttpClients;
 using DuckCoin.Wallet.Services;
 
 namespace DuckCoin.Wallet.Forms
@@ -10,6 +13,7 @@ namespace DuckCoin.Wallet.Forms
         private readonly ITransactionManager _transactionManager;
         private readonly IAccountService _accountServcie;
         private readonly ITransactionService _transactionService;
+        private readonly IFullNodeHttpClient _httpClient;
         private byte _operationCount;
         private readonly Account _account;
 
@@ -20,7 +24,8 @@ namespace DuckCoin.Wallet.Forms
             _accountServcie = Program.Container.Resolve<IAccountService>();
             _operationCount = 1;
             _account = account;
-            InitializeComponent();
+            _httpClient = Program.Container.Resolve<IFullNodeHttpClient>();
+            InitializeComponent();           
         }
 
         private void button_add2Operation_Click(object sender, EventArgs e)
@@ -126,6 +131,9 @@ namespace DuckCoin.Wallet.Forms
             
             _account.Balance -= transaction.GetTotalAmount();
             await _accountServcie.UpdateAccountAsync(_account);
+
+            var transactionDto = MappingHelper.MapTransactionToDto(transaction);
+            await _httpClient.PostTransactionAsync(transactionDto);
 
             MessageBox.Show("Transaction was successfully sent to the blockchain.");
             Close();

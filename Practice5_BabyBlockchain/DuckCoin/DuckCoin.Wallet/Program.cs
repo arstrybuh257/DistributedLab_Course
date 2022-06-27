@@ -5,6 +5,7 @@ using System.Reflection;
 using DuckCoin.Wallet.DomainModels;
 using DuckCoin.Cryptography.Encryption;
 using DuckCoin.Cryptography.Hashing;
+using DuckCoin.Wallet.HttpClients;
 
 namespace DuckCoin.Wallet
 {
@@ -32,9 +33,10 @@ namespace DuckCoin.Wallet
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .AsImplementedInterfaces();
-            builder.RegisterType<RSAEncryptor>().As<IEncryptor>();
-            builder.RegisterType<SHA1Hash>().As<IHashFunction>();
+            builder.RegisterType<RSAEncryptor>().As<IEncryptor>().SingleInstance();
+            builder.RegisterType<SHA1Hash>().As<IHashFunction>().SingleInstance();
             builder.AddMongo(Configuration);
+            builder.RegisterType<FullNodeHttpClient>().As<IFullNodeHttpClient>().SingleInstance();
             builder.AddMongoRepository<Account>("Accounts");
             builder.AddMongoRepository<Transaction>("Transactions");
             builder.RegisterType<MainForm>().SingleInstance();

@@ -10,12 +10,14 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DuckCoin.Cryptography\DuckCoin.Cryptography.csproj" />
     <ProjectReference Include="..\DuckCoin.DataAccess\DuckCoin.DataAccess.csproj" />
+    <ProjectReference Include="..\DuckCoin.Dto\DuckCoin.Dto.csproj" />
   </ItemGroup>
 
   <ItemGroup>
