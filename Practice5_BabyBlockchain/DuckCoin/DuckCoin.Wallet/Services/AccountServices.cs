@@ -22,7 +22,7 @@ namespace DuckCoin.Wallet.Services
 
         public async Task<Account> GetAccountAsync(string accountId)
         {
-            return await _accountRepository.GetAccountByPredicateAsync(x => accountId.Equals(x.PublicKeyHash)).ConfigureAwait(false);
+            return await _accountRepository.GetAccountByPredicateAsync(x => accountId.Equals(x.AccountAddress)).ConfigureAwait(false);
         }
 
         public async Task UpdateAccountAsync(Account account)

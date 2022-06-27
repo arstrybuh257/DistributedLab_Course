@@ -1,15 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using DuckCoin.Dto;
+using DuckCoin.FullNode.DomainModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DuckCoin.FullNode.Controllers
 {
     [Route("[controller]")]
     public class TransactionController : ControllerBase
     {
-        [HttpPost]
-        public async Task<IActionResult> PostTransactionAsync([FromBody] Transaction transaction)
+        private readonly IMapper _mapper;
+
+        public TransactionController(IMapper mapper)
         {
-            return Ok();
+            _mapper = mapper;
         }
 
+        [HttpPost]
+        public IActionResult PostTransactionAsync([FromBody] TransactionDto transactionDto)
+        {
+            var transaction = _mapper.Map<Transaction>(transactionDto);
+
+            if (transaction == null)
+            {
+                return BadRequest("Transaction had invalid format.");
+            }
+
+            MemPool.AddTransaction(transaction);
+            return NoContent();
+        }
     }
 }

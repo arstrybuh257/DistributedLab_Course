@@ -15,7 +15,7 @@ namespace DuckCoin.Wallet
             _account = account;
             _accountService = Program.Container.Resolve<IAccountService>(); 
             InitializeComponent();
-            textBox_accountAddress.Text = _account.PublicKeyHash;
+            textBox_accountAddress.Text = _account.AccountAddress;
             label_balance.Text = _account.Balance.ToString();
         }
 
@@ -45,7 +45,7 @@ namespace DuckCoin.Wallet
 
         private async Task ReloadAccountData()
         {
-            _account = await _accountService.GetAccountAsync(_account.PublicKeyHash);
+            _account = await _accountService.GetAccountAsync(_account.AccountAddress);
             label_balance.Text = _account.Balance.ToString();
         }
     }

@@ -25,9 +25,9 @@ namespace DuckCoin.Wallet
 
             var account = _accountManager.CreateAccount(textBox_password.Text);
             await _accountservice.AddAccountAsync(account);
-            MessageBox.Show($"This is your address hash. Use it for signing in the wallet.\n {account.PublicKeyHash}");
+            MessageBox.Show($"This is your address hash. Use it for signing in the wallet.\n {account.AccountAddress}");
 
-            await ProceedToAnAccountFormAsync(account.PublicKeyHash);
+            await ProceedToAnAccountFormAsync(account.AccountAddress);
         }
 
         private async void button_login_Click(object sender, EventArgs e)

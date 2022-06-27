@@ -154,7 +154,7 @@ namespace DuckCoin.Wallet.Forms
                 return null;
             }
 
-            return new Operation(_account.PublicKeyHash, receiverAddress, amount, _account.PublicKey);
+            return new Operation(_account.AccountAddress, receiverAddress, amount, _account.PublicKey);
         }
     }
 }

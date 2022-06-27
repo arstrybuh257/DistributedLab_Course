@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuckCoin.DataAccess", "Duck
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuckCoin.FullNode", "DuckCoin.FullNode\DuckCoin.FullNode.csproj", "{220671F4-B85F-4A8D-BAC8-810F40CF5D67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckCoin.Dto", "DuckCoin.Dto\DuckCoin.Dto.csproj", "{DC8BF85A-CD1F-4E54-BEEA-6C6D78D59C7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{220671F4-B85F-4A8D-BAC8-810F40CF5D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{220671F4-B85F-4A8D-BAC8-810F40CF5D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{220671F4-B85F-4A8D-BAC8-810F40CF5D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC8BF85A-CD1F-4E54-BEEA-6C6D78D59C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC8BF85A-CD1F-4E54-BEEA-6C6D78D59C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC8BF85A-CD1F-4E54-BEEA-6C6D78D59C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC8BF85A-CD1F-4E54-BEEA-6C6D78D59C7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

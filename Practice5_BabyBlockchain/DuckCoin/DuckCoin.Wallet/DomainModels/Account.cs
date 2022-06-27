@@ -9,7 +9,7 @@ namespace DuckCoin.Wallet.DomainModels
         {
             PublicKey = keyPair.PublicKey;
             PrivateKey = keyPair.PrivateKey;
-            PublicKeyHash = publicKeyHash;
+            AccountAddress = publicKeyHash;
             PasswordHash = passwordHash;
             Balance = 0;
         }
@@ -22,6 +22,6 @@ namespace DuckCoin.Wallet.DomainModels
 
         public string PasswordHash { get; set; }
 
-        public string PublicKeyHash { get; set; }
+        public string AccountAddress { get; set; }
     }
 }
