@@ -5,9 +5,11 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuckCoin.Wallet", "DuckCoin.Wallet\DuckCoin.Wallet.csproj", "{16F9AB83-A0D0-45F8-96A7-B7495D4F6BDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckCoin.Cryptography", "DuckCoin.Cryptography\DuckCoin.Cryptography.csproj", "{3424DF25-2754-4CE6-A6F5-7E19A1C63955}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuckCoin.Cryptography", "DuckCoin.Cryptography\DuckCoin.Cryptography.csproj", "{3424DF25-2754-4CE6-A6F5-7E19A1C63955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuckCoin.DataAccess", "DuckCoin.DataAccess\DuckCoin.DataAccess.csproj", "{220671F4-B85F-4A8D-BAC8-810F40CF5D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuckCoin.DataAccess", "DuckCoin.DataAccess\DuckCoin.DataAccess.csproj", "{220671F4-B85F-4A8D-BAC8-810F40CF5D65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuckCoin.FullNode", "DuckCoin.FullNode\DuckCoin.FullNode.csproj", "{220671F4-B85F-4A8D-BAC8-810F40CF5D67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{220671F4-B85F-4A8D-BAC8-810F40CF5D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{220671F4-B85F-4A8D-BAC8-810F40CF5D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{220671F4-B85F-4A8D-BAC8-810F40CF5D65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{220671F4-B85F-4A8D-BAC8-810F40CF5D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{220671F4-B85F-4A8D-BAC8-810F40CF5D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{220671F4-B85F-4A8D-BAC8-810F40CF5D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{220671F4-B85F-4A8D-BAC8-810F40CF5D67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
