@@ -27,7 +27,7 @@ namespace DuckCoin.Wallet.Core
                 transaction.AddOperation(operation);
             }
 
-            var transactionString = JsonSerializer.Serialize(transaction);
+            var transactionString = transaction.GetTransactionString();
             var transactionHash = _hasFunction.GetHash(transactionString);
             transaction.SetTransactionId(transactionHash);
 

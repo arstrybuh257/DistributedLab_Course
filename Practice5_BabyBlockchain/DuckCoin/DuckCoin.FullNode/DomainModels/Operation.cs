@@ -34,7 +34,7 @@ namespace DuckCoin.FullNode.DomainModels
             return encryptor.VerifySign(publicKey, GetOperationString(), Signature);
         }
 
-        private string GetOperationString()
+        public string GetOperationString()
         {
             return SenderPublicKey + SenderAddress + ReceiverAddress + Amount.ToString();
         }

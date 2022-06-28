@@ -1,4 +1,6 @@
-﻿namespace DuckCoin.FullNode.DomainModels
+﻿using System.Text;
+
+namespace DuckCoin.FullNode.DomainModels
 {
     public class Transaction
     {
@@ -33,6 +35,20 @@
             double totalAmount = 0;
             Operations.ForEach(o => totalAmount += o.Amount);
             return totalAmount;
+        }
+
+        public string GetTransactionString()
+        {
+            var sb = new StringBuilder();
+
+            foreach (var operation in Operations)
+            {
+                sb.Append(operation.GetOperationString());
+            }
+
+            sb.Append(Nonce);
+
+            return sb.ToString();
         }
     }
 }
