@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using DuckCoin.DataAccess.Abstractions;
+using System.Text;
 
 namespace DuckCoin.FullNode.DomainModels
 {
-    public class Transaction
+    public class Transaction : BaseEntity
     {
         public string? TransactionId { get; private set; }
 

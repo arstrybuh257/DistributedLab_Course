@@ -22,5 +22,7 @@ namespace DuckCoin.FullNode
             _transactionQueue.TryDequeue(out var transaction);
             return transaction;                    
         }
+
+        public static bool IsEmpty { get => _transactionQueue.IsEmpty; }
     }
 }

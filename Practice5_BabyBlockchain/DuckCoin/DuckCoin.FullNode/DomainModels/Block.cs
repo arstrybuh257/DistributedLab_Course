@@ -7,7 +7,7 @@ namespace DuckCoin.FullNode.DomainModels
     {
         public string? BlockId { get; private set; }
 
-        public string PrevHash { get; set; }
+        public string? PrevHash { get; set; }
 
         public List<Transaction> Transactions { get; set; }
 
@@ -16,28 +16,20 @@ namespace DuckCoin.FullNode.DomainModels
 
         public string? ProofOfWork { get; set; }
 
-        public Block(string prevHash)
+        public long CreationTimeStamp { get; set; }
+
+        public Block(string? prevHash)
         {
             PrevHash = prevHash;
             Transactions = new List<Transaction>();
             Nonce = 0;
             ProofOfWork = null;
+            CreationTimeStamp = DateTime.UtcNow.Ticks;
         }
 
-        public bool TryAddTransaction(Transaction transaction)
+        public void AddTransaction(Transaction transaction)
         {
-            if(Transactions.Count >= 5)
-            {
-                return false;
-            }
-
-            if (Transactions.Any(t=> t.TransactionId == transaction.TransactionId))
-            {
-                return false;
-            }
-
             Transactions.Add(transaction);
-            return true;
         }
 
         public void SetBlockId(string blockId)
@@ -55,6 +47,8 @@ namespace DuckCoin.FullNode.DomainModels
             }
 
             sb.Append(PrevHash);
+            sb.Append(CreationTimeStamp);
+            sb.Append(Nonce);
         }
     }
 }
