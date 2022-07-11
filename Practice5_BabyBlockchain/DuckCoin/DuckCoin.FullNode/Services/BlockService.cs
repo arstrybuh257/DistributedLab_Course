@@ -1,13 +1,14 @@
 ﻿using DuckCoin.FullNode.DataAccess.Abstractions;
 using DuckCoin.FullNode.DomainModels;
+using DuckCoin.FullNode.Services.Abstractions;
 
 namespace DuckCoin.FullNode.Services
 {
-    public class BlockSevice : IBlockService
+    public class BlockService : IBlockService
     {
         private readonly IBlockRepository _blockRepository;
 
-        public BlockSevice(IBlockRepository blockRepository)
+        public BlockService(IBlockRepository blockRepository)
         {
             _blockRepository = blockRepository;
         }
@@ -20,13 +21,7 @@ namespace DuckCoin.FullNode.Services
         public async Task<string?> GetLatestBlocksHashAsync()
         {
             var blocks = await _blockRepository.FindBlocksAsync(x => true);
-
-            if( blocks == null || !blocks.Any())
-            {
-                return null;
-            }
-
-            return blocks.OrderByDescending(x=> x.CreationTimeStamp).First().BlockId;
+            return blocks.MaxBy(x=> x.CreationTimeStamp)?.BlockId;
         }
     }
 }

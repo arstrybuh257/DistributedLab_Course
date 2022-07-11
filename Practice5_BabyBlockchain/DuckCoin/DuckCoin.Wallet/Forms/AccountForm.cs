@@ -1,9 +1,8 @@
 ﻿using Autofac;
 using DuckCoin.Wallet.DomainModels;
-using DuckCoin.Wallet.Forms;
 using DuckCoin.Wallet.Services;
 
-namespace DuckCoin.Wallet
+namespace DuckCoin.Wallet.Forms
 {
     public partial class AccountForm : Form
     {
@@ -33,10 +32,10 @@ namespace DuckCoin.Wallet
 
         private async void button_createTransaction_Click(object sender, EventArgs e)
         {
-            await ProceedToTheCreateNewTrasactionForm();
+            await ProceedToTheCreateNewTransactionForm();
         }
 
-        private async Task ProceedToTheCreateNewTrasactionForm()
+        private async Task ProceedToTheCreateNewTransactionForm()
         {
             var form = new CreateNewTransactionForm(_account);
             form.ShowDialog();

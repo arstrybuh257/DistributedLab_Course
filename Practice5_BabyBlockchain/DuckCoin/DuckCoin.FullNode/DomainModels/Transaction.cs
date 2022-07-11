@@ -12,12 +12,12 @@ namespace DuckCoin.FullNode.DomainModels
         public long Nonce { get; set; }
 
         //This fields shows if this transaction was processed and added to blockchain or it's just local one yet.
-        public bool IsBlockhainTransaction { get; set; }
+        public bool IsBlockchainTransaction { get; set; }
 
         public Transaction()
         {
             Operations = new List<Operation>();
-            IsBlockhainTransaction = false;
+            IsBlockchainTransaction = false;
             Nonce = DateTime.Now.Ticks;
         }
 

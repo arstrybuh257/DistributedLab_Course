@@ -1,4 +1,4 @@
-﻿namespace DuckCoin.Wallet
+﻿namespace DuckCoin.Wallet.Forms
 {
     partial class AccountForm
     {

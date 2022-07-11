@@ -1,6 +1,6 @@
 ﻿using DuckCoin.FullNode.DomainModels;
 
-namespace DuckCoin.FullNode.Services
+namespace DuckCoin.FullNode.Services.Abstractions
 {
     public interface IBlockService
     {

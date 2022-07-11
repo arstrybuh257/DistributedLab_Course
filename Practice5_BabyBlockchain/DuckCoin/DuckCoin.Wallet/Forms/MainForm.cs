@@ -1,5 +1,7 @@
 using Autofac;
 using DuckCoin.Wallet.Core.Abstractions;
+using DuckCoin.Wallet.Forms;
+using DuckCoin.Wallet.HttpClients;
 using DuckCoin.Wallet.Services;
 
 namespace DuckCoin.Wallet
@@ -7,12 +9,14 @@ namespace DuckCoin.Wallet
     public partial class MainForm : Form
     {
         private readonly IAccountManager _accountManager;
-        private readonly IAccountService _accountservice;
+        private readonly IAccountService _accountService;
+        private readonly IFullNodeHttpClient _httpClient;
 
         public MainForm()
         {
             _accountManager = Program.Container.Resolve<IAccountManager>();
-            _accountservice = Program.Container.Resolve<IAccountService>();
+            _accountService = Program.Container.Resolve<IAccountService>();
+            _httpClient = Program.Container.Resolve<IFullNodeHttpClient>();
             InitializeComponent();
         }
 
@@ -25,7 +29,8 @@ namespace DuckCoin.Wallet
             }
 
             var account = _accountManager.CreateAccount(textBox_password.Text);
-            await _accountservice.AddAccountAsync(account);
+            await _accountService.AddAccountAsync(account);
+            await _httpClient.PostAccountAsync(account.AccountAddress);
             MessageBox.Show($"This is your address hash. Use it for signing in the wallet.\n {account.AccountAddress}");
 
             await ProceedToAnAccountFormAsync(account.AccountAddress);
@@ -43,7 +48,7 @@ namespace DuckCoin.Wallet
             var accountId = textBox_login_address.Text;
             var password = textBox_login_password.Text;
 
-            var validationResult = await _accountservice.ValidatePasswordAsync(accountId, password);
+            var validationResult = await _accountService.ValidatePasswordAsync(accountId, password);
 
             if(validationResult == false)
             {
@@ -56,7 +61,7 @@ namespace DuckCoin.Wallet
 
         private async Task ProceedToAnAccountFormAsync(string accountId)
         {
-            var account = await _accountservice.GetAccountAsync(accountId);
+            var account = await _accountService.GetAccountAsync(accountId);
 
             if (account == null)
             {

@@ -37,7 +37,7 @@ namespace DuckCoin.FullNode.DomainModels
             BlockId = blockId;
         }
 
-        public void GetBlockString()
+        public string GetBlockString()
         {
             var sb = new StringBuilder();
 
@@ -49,6 +49,8 @@ namespace DuckCoin.FullNode.DomainModels
             sb.Append(PrevHash);
             sb.Append(CreationTimeStamp);
             sb.Append(Nonce);
+            
+            return sb.ToString();
         }
     }
 }
