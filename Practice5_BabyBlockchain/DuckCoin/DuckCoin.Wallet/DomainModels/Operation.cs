@@ -29,7 +29,7 @@ namespace DuckCoin.Wallet.DomainModels
             Signature = encryptor.Sign(GetOperationString(), privateKey);
         }
 
-        public bool VerifySignature(IEncryptor encryptor, string publicKey)
+        public bool VerifySignature(IEncryptor encryptor, string? publicKey)
         {
             return encryptor.VerifySign(publicKey, GetOperationString(), Signature);
         }

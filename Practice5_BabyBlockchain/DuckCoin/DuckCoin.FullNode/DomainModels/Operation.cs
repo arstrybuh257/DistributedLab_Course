@@ -5,7 +5,7 @@ namespace DuckCoin.FullNode.DomainModels
     public class Operation
     {
 
-        public Operation(string senderAddress, string receiverAddress, double amount, string senderPublicKey)
+        public Operation(string? senderAddress, string? receiverAddress, double amount, string? senderPublicKey)
         {
             SenderAddress = senderAddress;
             SenderPublicKey = senderPublicKey;
@@ -14,11 +14,11 @@ namespace DuckCoin.FullNode.DomainModels
             Signature = null;
         }
 
-        public string SenderPublicKey { get; set; }
+        public string? SenderPublicKey { get; set; }
 
-        public string SenderAddress { get; set; }
+        public string? SenderAddress { get; set; }
 
-        public string ReceiverAddress { get; set; }
+        public string? ReceiverAddress { get; set; }
 
         public double Amount { get; set; }
 
@@ -29,7 +29,7 @@ namespace DuckCoin.FullNode.DomainModels
             Signature = encryptor.Sign(GetOperationString(), privateKey);
         }
 
-        public bool VerifySignature(IEncryptor encryptor, string publicKey)
+        public bool VerifySignature(IEncryptor encryptor, string? publicKey)
         {
             return encryptor.VerifySign(publicKey, GetOperationString(), Signature);
         }

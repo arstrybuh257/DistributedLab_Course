@@ -31,5 +31,13 @@ namespace DuckCoin.Wallet.HttpClients
             var response = await _httpClient.PostAsync("account", requestContent).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
         }
+
+        public async Task<IEnumerable<OperationDto>> GetAllAccountOperationsAsync(string accountAddress)
+        {
+            var response = await _httpClient.GetAsync($"transactions/getOperationsByAccountId/{accountAddress}");
+            response.EnsureSuccessStatusCode();
+            var stringContent = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+            return JsonSerializer.Deserialize<IEnumerable<OperationDto>>(stringContent);
+        }
     }
 }

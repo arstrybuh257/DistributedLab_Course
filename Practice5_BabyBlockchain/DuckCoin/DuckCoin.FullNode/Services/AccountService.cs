@@ -13,7 +13,7 @@ public class AccountService : IAccountService
         _accountRepository = accountRepository;
     }
 
-    public async Task<Account?> GetAccountByAddressAsync(string accountAddress)
+    public async Task<Account?> GetAccountByAddressAsync(string? accountAddress)
     {
         return (await _accountRepository.FindAccountsAsync(x => x.AccountAddress == accountAddress)
             .ConfigureAwait(false)).FirstOrDefault();
@@ -29,7 +29,7 @@ public class AccountService : IAccountService
         await _accountRepository.UpdateAccountAsync(account).ConfigureAwait(false);
     }
 
-    public async Task<bool> ExistsAsync(string accountAddress)
+    public async Task<bool> ExistsAsync(string? accountAddress)
     {
         return await _accountRepository.ExistsAsync(accountAddress).ConfigureAwait(false);
     }

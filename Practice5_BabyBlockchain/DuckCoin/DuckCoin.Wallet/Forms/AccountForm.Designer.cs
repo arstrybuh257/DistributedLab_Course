@@ -103,6 +103,7 @@
             this.button_syncronizeBalance.TabIndex = 6;
             this.button_syncronizeBalance.Text = "Syncronize balance";
             this.button_syncronizeBalance.UseVisualStyleBackColor = true;
+            this.button_syncronizeBalance.Click += new System.EventHandler(this.button_syncronizeBalance_Click);
             // 
             // button_getTestTokens
             // 

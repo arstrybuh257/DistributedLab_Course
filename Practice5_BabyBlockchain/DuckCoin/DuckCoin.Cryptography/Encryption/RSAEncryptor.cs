@@ -23,7 +23,7 @@ namespace DuckCoin.Cryptography.Encryption
             return Convert.ToBase64String(signedHash);
         }
 
-        public bool VerifySign(string publicKey, string data, string sign)
+        public bool VerifySign(string? publicKey, string data, string sign)
         {
             using var provider = GetVerificationProvider(publicKey);
             var signBytes = Convert.FromBase64String(sign);
@@ -40,7 +40,7 @@ namespace DuckCoin.Cryptography.Encryption
             return provider;
         }
 
-        private RSACryptoServiceProvider GetVerificationProvider(string publicKey)
+        private RSACryptoServiceProvider GetVerificationProvider(string? publicKey)
         {
             var parameter = GetPublicKey(Convert.FromBase64String(publicKey));
             var provider = new RSACryptoServiceProvider();

@@ -1,24 +1,34 @@
 ﻿using DuckCoin.Cryptography.Encryption;
+using DuckCoin.Cryptography.Hashing;
 using DuckCoin.FullNode.DomainModels;
-using DuckCoin.FullNode.Services;
 using DuckCoin.FullNode.Services.Abstractions;
 
 namespace DuckCoin.FullNode.Core;
 
-public class TransactionValidator : ITransactionValidator
+public class TransactionManager : ITransactionManager
 {
     private readonly IAccountService _accountService;
     private readonly IEncryptor _encryptor;
+    private readonly IHashFunction _hashFunction;
 
-    public TransactionValidator(IAccountService accountService, IEncryptor encryptor)
+    public TransactionManager(IAccountService accountService, IEncryptor encryptor)
     {
         _accountService = accountService;
         _encryptor = encryptor;
     }
 
+    // public Transaction CreateNewEmissionTransaction(string accountId, double amountOfCoins)
+    // {
+    //     // var transaction = new Transaction();
+    //     // var operation = new Operation(null, accountId, amountOfCoins, null);
+    //     // operation.
+    //     // transaction.AddOperation(operation);
+    //     
+    // }
+
     public async Task<bool> ValidateTransactionAsync(Transaction transaction)
     {
-        var spentMoneyBySenders = new Dictionary<string, double>();
+        var spentMoneyBySenders = new Dictionary<string?, double>();
         
         foreach (var operation in transaction.Operations)
         {

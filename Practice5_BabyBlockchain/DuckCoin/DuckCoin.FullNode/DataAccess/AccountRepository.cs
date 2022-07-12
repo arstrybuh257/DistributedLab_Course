@@ -29,7 +29,7 @@ public class AccountRepository : IAccountRepository
         await _internalRepository.UpdateAsync(account).ConfigureAwait(false);
     }
     
-    public async Task<bool> ExistsAsync(string accountAddress)
+    public async Task<bool> ExistsAsync(string? accountAddress)
     {
         return await _internalRepository.ExistsAsync(x => x.AccountAddress == accountAddress);
     }

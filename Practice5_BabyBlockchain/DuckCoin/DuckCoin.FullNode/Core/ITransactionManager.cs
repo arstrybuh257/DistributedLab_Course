@@ -2,7 +2,8 @@
 
 namespace DuckCoin.FullNode.Core;
 
-public interface ITransactionValidator
+public interface ITransactionManager
 {
+    //Transaction CreateNewTransaction();
     Task<bool> ValidateTransactionAsync(Transaction transaction);
 }

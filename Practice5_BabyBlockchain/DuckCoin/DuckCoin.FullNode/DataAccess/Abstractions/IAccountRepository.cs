@@ -11,5 +11,5 @@ public interface IAccountRepository
     
     public Task UpdateAccountAsync(Account account);
 
-    Task<bool> ExistsAsync(string accountAddress);
+    Task<bool> ExistsAsync(string? accountAddress);
 }

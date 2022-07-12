@@ -16,7 +16,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostAccountAsync(string accountAddress)
+    public async Task<IActionResult> PostAccountAsync(string? accountAddress)
     {
         var account = new Account(accountAddress);
 
